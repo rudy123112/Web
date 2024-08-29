@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda Instrumental</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Enlace al favicon -->
+    <link rel="icon" type="image/png" href="imagen/Captura de pantalla 2024-08-28 104033.png"> <!-- Asegúrate de usar el formato correcto y la ruta adecuada -->
+
+    <script>
+        // Inicializar variables
+        let cart = [];
+        let total = 0;
+
+        // Función para agregar productos al carrito
+        function addToCart(productName, productPrice) {
+            // Agregar producto al carrito
+            cart.push({ name: productName, price: productPrice });
+            
+            // Actualizar total
+            total += productPrice;
+
+            // Renderizar el carrito
+            renderCart();
+        }
+
+        // Función para renderizar el carrito
+        function renderCart() {
+            const cartItems = document.getElementById('cart-items');
+            const totalPrice = document.getElementById('total-price');
+
+            // Limpiar la lista de elementos previos
+            cartItems.innerHTML = '';
+
+            // Mostrar los productos en el carrito
+            cart.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = `${item.name} - $${item.price.toFixed(2)}`;
+                cartItems.appendChild(li);
+            });
+
+            // Actualizar el precio total
+            totalPrice.textContent = `Total: $${total.toFixed(2)}`;
+        }
+
+        // Función para reiniciar el carrito
+        function resetCart() {
+            // Vaciar el carrito y restablecer el total
+            cart = [];
+            total = 0;
+
+            // Renderizar el carrito vacío
+            renderCart();
+        }
+
+        // Función para mostrar/ocultar el carrito
+        function toggleCart() {
+            const cartContainer = document.getElementById('cart-container');
+            cartContainer.style.display = (cartContainer.style.display === 'none' || cartContainer.style.display === '') ? 'block' : 'none';
+        }
+
+        // Función para cerrar el carrito
+        function closeCart() {
+            const cartContainer = document.getElementById('cart-container');
+            cartContainer.style.display = 'none';
+        }
+    </script>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('imagen/fondo.jpg');
+            background-size: cover; /* La imagen cubre todo el fondo */
+            background-repeat: no-repeat; /* Evita que la imagen se repita */
+            background-position: center center; /* Centra la imagen en el fondo */
+            background-attachment: fixed; /* Fija la imagen para que no se mueva al hacer scroll */
+            height: 100vh;
+        }
+        p {
+            color: #ff40df;
+            background: rgb(0, 0, 0);
+            width: 100px;
+            height: 60px;
+            margin: 0px 46% 0px;
+            text-align: center;
+            font-size: 1.2rem;
+        }
+        .redes {
+            width: 100%;
+            height: 150px;
+            align-items: center;
+            border-top: 2rem;
+        }
+
+        .redes img {
+            padding: 1rem;
+        }
+        .cart-container {
+            display: none; /* Ocultar el carrito por defecto */
+            background: white;
+            border: 1px solid #ddd;
+            padding: 10px;
+            position: absolute;
+            top: 80px;
+            right: 20px;
+            width: 300px;
+            z-index: 1000;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .toggle-cart-btn {
+            position: relative;
+            display: inline-block;
+            padding: 10px;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+        }
+        .toggle-cart-btn img {
+            width: 50px;
+            height: 50px;
+        }
+        .close-cart-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ddd;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            padding: 5px;
+        }
+        .close-cart-btn img {
+            width: 20px;
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+    
+
+    <!-- Logo -->
+    <div class="logo">
+        <img src="imagen/Captura de pantalla 2024-08-28 104033.png" height="500" width="1300" alt="Logo de la tienda">
+    </div>
+
+    <!-- Botón para mostrar/ocultar carrito con imagen -->
+    <button class="toggle-cart-btn" onclick="toggleCart()" title="Ver productos añadidos al carrito">
+        <img src="imagen/crtcp.png" alt="Carrito">
+    </button>
+
+    <!-- Contenedor del carrito -->
+    <div id="cart-container" class="cart-container">
+        <!-- Botón de cerrar -->
+        <button class="close-cart-btn" onclick="closeCart()">
+            <img src="imagen/close-button-icon-free-vector.jpg" height="80" width="80" alt="Cerrar">
+        </button>
+        <h2>Carrito de compras</h2>
+        <ul id="cart-items"></ul>
+        <p id="total-price">Total: $0.00</p>
+        <button onclick="resetCart()">Reiniciar Carrito</button>
+    </div>
+
+    
+
+    <!-- Productos -->
+    <div class="pr1">
+        <img src="imagen/sxalt2.jpg" width="500" height="500" alt="Saxofon tenor">
+        <h2>Saxofon alto</h2>
+        <h3><p>Precio: $200.00</p></h3>
+        <button onclick="addToCart('Saxofon alto', 600.00)">Agregar al carrito</button>
+    </div>
+
+    <br><br>
+    <div class="pr1">
+        <img src="imagen/sxtenor.jpg" width="500" height="500" alt="Saxofon tenor">
+        <h2>Saxofon tenor</h2>
+        <h3><p>Precio: $600.00</p></h3>
+        <button onclick="addToCart('Saxofon tenor', 600.00)">Agregar al carrito</button>
+    </div>
+    <br><br>
+
+    <div class="pr1">
+        <img src="imagen/sxbaritono.jpg" width="500" height="500" alt="Saxofon baritono">
+        <h2>Saxofon baritono</h2>
+        <h3><p>Precio: $1200.00</p></h3>
+        <button onclick="addToCart('Saxofon baritono', 1200.00)">Agregar al carrito</button>
+    </div>
+    <br>
+    <div class="pr1">
+        <img src="imagen/sxsoprano.jpg" width="500" height="500" alt="Saxofon soprano">
+        <h2>Saxofon soprano</h2>
+        <h3><p>Precio: $750.00</p></h3>
+        <button onclick="addToCart('Saxofon soprano', 750.00)">Agregar al carrito</button>
+    </div>
+    <br>
+    <div class="pr1">
+        <img src="imagen/clarinete.jpg" width="500" height="500" alt="Clarinete">
+        <h2>Clarinete</h2>
+        <h3><p>Precio: $180.00</p></h3>
+        <button onclick="addToCart('Clarinete', 180.00)">Agregar al carrito</button>
+    </div>
+    <br>
+    <div class="pr1">
+        <img src="imagen/fagot.jpg" width="500" height="500" alt="Fagot">
+        <h2>Fagot</h2>
+        <h3><p>Precio: $2220.00</p></h3>
+        <button onclick="addToCart('Fagot', 2220.00)">Agregar al carrito</button>
+    </div>
+
+    <br><br>
+    
+    <div class="inicio" title="Ir al inicio">
+        <!-- Botón para regresar al inicio -->
+        <a href="#top" class="scroll-to-top-btn">
+            <img src="imagen/flecha.png" width="50px" height="50px">
+        </a>
+    </div>
+
+    <!-- Redes sociales -->
+
+    <div class="contrd">
+
+        <div class="redes" title="Síguenos en nuestras redes sociales">
+            <a href="https://www.facebook.com">
+                <img src="imagen/facebook.png" height="50" width="50" alt="Facebook">
+            </a>
+            <a href="https://www.instagram.com">
+                <img src="imagen/social.png" height="50" width="50" alt="Instagram">
+            </a>
+            <a href="https://whatsapp.com">
+                <img src="imagen/whatsapp.png" height="50" width="50" alt="WhatsApp">
+            </a>
+            <!-- Mensaje de Copyright -->
+            <footer class="footer">
+                <h4>&copy; 2024 Tienda Instrumental. Todos los derechos reservados.</h4> 
+            </footer>      
+        </div>
+
+    </div>
+   
+
+
+</body>
+</html>
